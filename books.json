@@ -1,0 +1,82 @@
+[
+    {
+        "book_id": 1,
+        "title": "Python Crash Course",
+        "author": "Eric Matthes",
+        "year": 2019,
+        "genre": "Programming",
+        "status": "available"
+    },
+    {
+        "book_id": 2,
+        "title": "Fluent Python",
+        "author": "Luciano Ramalho",
+        "year": 2022,
+        "genre": "Programming",
+        "status": "borrowed"
+    },
+    {
+        "book_id": 3,
+        "title": "Clean Code",
+        "author": "Robert C. Martin",
+        "year": 2008,
+        "genre": "Software Engineering",
+        "status": "available"
+    },
+    {
+        "book_id": 4,
+        "title": "The Pragmatic Programmer",
+        "author": "Andrew Hunt",
+        "year": 1999,
+        "genre": "Software Development",
+        "status": "available"
+    },
+    {
+        "book_id": 5,
+        "title": "Automate the Boring Stuff with Python",
+        "author": "Al Sweigart",
+        "year": 2020,
+        "genre": "Programming",
+        "status": "borrowed"
+    },
+    {
+        "book_id": 6,
+        "title": "Database Systems: The Complete Book",
+        "author": "Hector Garcia-Molina",
+        "year": 2020,
+        "genre": "Database",
+        "status": "available"
+    },
+    {
+        "book_id": 7,
+        "title": "Learning SQL",
+        "author": "Alan Beaulieu",
+        "year": 2021,
+        "genre": "Database",
+        "status": "available"
+    },
+    {
+        "book_id": 8,
+        "title": "Introduction to Algorithms",
+        "author": "Thomas H. Cormen",
+        "year": 2009,
+        "genre": "Computer Science",
+        "status": "borrowed"
+    },
+    {
+        "book_id": 9,
+        "title": "Deep Learning with Python",
+        "author": "François Chollet",
+        "year": 2021,
+        "genre": "Artificial Intelligence",
+        "status": "available"
+    },
+    {
+        "book_id": 10,
+        "title": "Head First Design Patterns",
+        "author": "Eric Freeman",
+        "year": 2020,
+        "genre": "Software Design",
+        "status": "available"
+    }
+]
