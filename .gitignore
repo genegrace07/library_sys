@@ -1,0 +1,5 @@
+#DONT INCLUDE THID FILES/FOLDERS
+
+.venv
+.idea/
+.env
