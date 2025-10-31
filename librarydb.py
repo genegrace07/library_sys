@@ -15,19 +15,22 @@ db = mysql.connector.connect(
 # result = dbcursor.fetchall()
 
 class Users:
-    def __init__(self,username,password):
-        self.username = username
-        self.password = password
-
-    def sign_in(self,username,password):
+    def sign_up(self,username,password):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
-        value = 'insert into admins(username,password) values(%s,%s)'
+        value = 'insert into admins(username,passwd) values(%s,%s)'
         cursor.execute(value,(username,password))
         db.commit()
         cursor.close()
-
     def login_in(self,username):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
         pass
+    def get_username(self,username):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select username from admins where username = %s'
+        cursor.execute(querry,(username,))
+        result = cursor.fetchone()
+        cursor.close()
+        return result
