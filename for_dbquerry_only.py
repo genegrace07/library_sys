@@ -11,11 +11,11 @@ db = mysql.connector.connect(
     password = os.getenv('dbpassword'),
     database = os.getenv('dbname')
 )
-
+#test connect
 dbcursor = db.cursor()
-dbcursor.execute('show tables from library')
+dbcursor.execute('select * from books')
 result_querry = dbcursor.fetchall()
-#print(result_querry)
+print(result_querry)
 
 #import json data to mysql
 books_json = 'books.json'
@@ -31,9 +31,9 @@ for l in data:
                      status=values(status)
                      """,(l['book_id'],l['title'],l['author'],l['status']))
 
-db.commit()
-dbcursor.close()
-db.close()
+# db.commit()
+# dbcursor.close()
+# db.close()
 
 
 
