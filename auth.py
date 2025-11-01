@@ -24,3 +24,24 @@ def signup():
             return redirect(url_for('auth.signup'))
     else:
         return render_template('sign.html')
+@auth.route('/',methods=['POST','GET'])
+def login():
+    u_id = current_app.config['userid']
+    if request.method == 'POST':
+        user = request.form.get('username')
+        passwrd = request.form.get('password')
+        u_login = u_id.get_username(user)
+        if u_login:
+            if check_password_hash(u_login['passwd'],passwrd):
+                flash('Login successfully','success')
+                return render_template('main.html')
+            else:
+                flash('Incorrect password','error')
+                return render_template('login.html')
+        else:
+            flash('Incorrect username', 'error')
+            return render_template('login.html')
+    else:
+        flash('Incorrect login','error')
+        return render_template('login.html')
+

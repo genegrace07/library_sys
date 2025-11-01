@@ -22,14 +22,18 @@ class Users:
         cursor.execute(value,(username,password))
         db.commit()
         cursor.close()
-    def login_in(self,username):
-        db.ping(reconnect=True)
-        cursor = db.cursor(dictionary=True,buffered=True)
-        pass
+    # def login_in(self,username,hashpassword):
+    #     db.ping(reconnect=True)
+    #     cursor = db.cursor(dictionary=True,buffered=True)
+    #     querry = 'select username,passwd from books where username = %s and passwd = %s'
+    #     cursor.execute(querry,(username,hashpassword,))
+    #     result = cursor.fetchone()
+    #     cursor.close()
+    #     return  result
     def get_username(self,username):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
-        querry = 'select username from admins where username = %s'
+        querry = 'select * from admins where username = %s'
         cursor.execute(querry,(username,))
         result = cursor.fetchone()
         cursor.close()

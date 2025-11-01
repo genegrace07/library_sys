@@ -1,4 +1,4 @@
-from flask import  Flask,render_template,redirect
+from flask import  Flask,render_template,redirect,session
 from auth import auth
 from actions import action
 from librarydb import Users
@@ -9,8 +9,8 @@ app.config['userid'] = Users()
 
 app.register_blueprint(auth,url_prefix='/')
 app.register_blueprint(action,url_prefix='/')
-@app.route('/')
-def home():
+@app.route('/libsys')
+def libsys():
     return render_template('main.html')
 
 

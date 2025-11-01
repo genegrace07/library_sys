@@ -5,10 +5,10 @@
 <br>
 <br>
 <h2 xmlns="http://www.w3.org/1999/html"><center>LIBRARY SYSTEM</center></h2>
-<form action="{{ action.login }}" method="POST" align="center">
-    <b>USERNAME:</b>  <input type="text" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus>
+<form action="{{ url_for('auth.login') }}" method="POST" align="center">
+    <b>USERNAME:</b>  <input type="text" name="username" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus>
     </br>
-    <br><b>PASSWORD:</b>  <input type="text" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus>
+    <br><b>PASSWORD:</b>  <input type="password" name="password" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus>
     <br><br><input type="submit" value="LOGIN" style="width:150px;height:30px; border-radius:100px;">
 </form><br>
 <center><a href="{{ url_for('auth.signup') }}"> Create account </a></center>
