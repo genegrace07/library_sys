@@ -3,7 +3,7 @@ from auth import auth
 from librarydb import Users
 
 app = Flask(__name__)
-app.secret_key = 'mysecretkey'
+app.secret_key = 'mysecretkeygit '
 app.config['userid'] = Users()
 
 app.register_blueprint(auth,url_prefix='/')
