@@ -1,4 +1,4 @@
-from flask import Flask,redirect,render_template,Blueprint,request,current_app,url_for,flash
+from flask import Flask,redirect,render_template,Blueprint,request,current_app,url_for,flash,session
 from werkzeug.security import generate_password_hash,check_password_hash
 import librarydb
 
@@ -34,7 +34,8 @@ def login():
         if u_login:
             if check_password_hash(u_login['passwd'],passwrd):
                 flash('Login successfully','success')
-                return render_template('main.html')
+                session['username'] = u_login['username']
+                return redirect(url_for('libsys'))
             else:
                 flash('Incorrect password','error')
                 return render_template('login.html')
@@ -42,6 +43,11 @@ def login():
             flash('Incorrect username', 'error')
             return render_template('login.html')
     else:
-        flash('Incorrect login','error')
         return render_template('login.html')
+@auth.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('auth.login'))
+
+
 
