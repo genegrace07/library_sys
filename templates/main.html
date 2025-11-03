@@ -16,7 +16,20 @@
             <button type="submit" name="action" value="addbook" style="width:130px;height:40px; border-radius:100px;font-size:21px;">Add Book</button>
 </form><br><br>
 <table width="800" height="30" style="background-color:white">
-    <tr><th><h3>#</h3></th><th><h3>Author</h3></th><th><h3>Status</h3></th><th><h3>Action</h3></th></tr>
+    <tr><th><h2>#</h2></th>
+        <th><h2>Title</h2></th>
+        <th><h2>Author</h2></th>
+        <th><h2>Status</h2></th>
+        <th><h2>Action</h2></th>
+    </tr>
+    {% for v in view_books %}
+    <tr><td>{{ v['book_id'] }}</td>
+        <td align="left">{{ v['title'] }}</td>
+        <td align="center">{{ v['author'] }}</td>
+        <td align="center" style="background-color:{{'lime' if v['status']  == 'available' else '#EEE600'}}">{{ v['status'] }}</td>
+        <td align="center">Action</td>
+    </tr>
+    {% endfor %}
 </table>
 </center>
 {% endblock %}
