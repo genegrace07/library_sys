@@ -36,7 +36,27 @@ class Operate(Users):
     def view(self):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
-        cursor.execute('select * from books')
+        querry = 'select * from books'
+        cursor.execute(querry)
         result = cursor.fetchall()
         cursor.close()
         return result
+
+    def available(self):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select * from books where status = "available" '
+        cursor.execute(querry)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+
+    def borrowed(self):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select * from books where status = "borrowed" '
+        cursor.execute(querry)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+
