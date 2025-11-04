@@ -1,4 +1,3 @@
-
 from flask import  Flask,render_template,redirect,session,flash,url_for,current_app
 from auth import auth
 from actions import action
@@ -8,6 +7,7 @@ app = Flask(__name__)
 app.secret_key = 'mysecretkeygit '
 app.config['userid'] = Users()
 app.config['useroperate'] = Operate()
+
 
 app.register_blueprint(auth,url_prefix='/')
 app.register_blueprint(action,url_prefix='/')
