@@ -22,6 +22,7 @@ class Users:
         cursor.execute(value,(username,password))
         db.commit()
         cursor.close()
+
     def get_username(self,username):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
@@ -30,7 +31,8 @@ class Users:
         result = cursor.fetchone()
         cursor.close()
         return result
-class Operations(Users):
+
+class Operate(Users):
     def view(self):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
@@ -47,3 +49,12 @@ class Operations(Users):
         result = cursor.fetchall()
         cursor.close()
         return result
+    def borrowed(self):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select * from books where status = "borrowed"'
+        cursor.execute(querry)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+

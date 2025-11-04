@@ -5,31 +5,37 @@
 {% block body %}
 <h3><a href="{{ url_for('auth.logout') }}">Logout</a></h3>
 <h1><center>LIBRARY MANAGEMENT SYSTEM</center></h1><br>
+
 <center>
-<form action="" method="GET" style="display:inline;">
+<form action="{{ url_for('libsys') }}" method="GET" style="display:inline;">
             <button type="submit" name="filter" value="allbooks" style="width:130px;height:40px; border-radius:100px;font-size:21px;">All Books</button>
             <button type="submit" name="filter" value="available" style="width:130px;height:40px; border-radius:100px;font-size:21px;">Available</button>
             <button type="submit" name="filter" value="borrowed" style="width:130px;height:40px; border-radius:100px;font-size:21px;">Borrowed</button>
-
 </form>
+
 <form action="" method="POST" style="display:inline;">
             <button type="submit" name="action" value="addbook" style="width:130px;height:40px; border-radius:100px;font-size:21px;">Add Book</button>
 </form><br><br>
-<table width="800" height="30" style="background-color:white">
-    <tr><th><h2>#</h2></th>
-        <th><h2>Title</h2></th>
-        <th><h2>Author</h2></th>
-        <th><h2>Status</h2></th>
-        <th><h2>Action</h2></th>
+
+<table width="800" height="30" style="background-color:white" border="0">
+    <thead>
+    <tr><th><h3>#</h3></th>
+        <th><h3>Title</h3></th>
+        <th><h3>Author</h3></th>
+        <th><h3>Status</h3></th>
+        <th><h3>Action</h3></th>
     </tr>
+    </thead>
+    <tbody>
     {% for v in view_books %}
-    <tr><td>{{ v['book_id'] }}</td>
-        <td align="left">{{ v['title'] }}</td>
+    <tr><td align="center">{{ v['book_id'] }}</td>
+        <td>{{ v['title'] }}</td>
         <td align="center">{{ v['author'] }}</td>
-        <td align="center" style="background-color:{{'lime' if v['status']  == 'available' else '#EEE600'}}">{{ v['status'] }}</td>
-        <td align="center">Action</td>
+        <td  align="center" style="background-color:{{ '#00CC99' if v['status'] == 'available' else '#8C92AC' }}{{endif}};">{{ v['status'] }}</td>
+        <td align="center">{{ 'action' }}</td>
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 </center>
 {% endblock %}

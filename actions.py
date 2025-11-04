@@ -4,5 +4,7 @@ action = Blueprint("action",__name__)
 
 @action.route('/available',methods=['POST','GET'])
 def available():
-    if request.method == 'POST':
-        request.form['']
+    pass
+    # if request.method == 'POST':
+    #     request.form['']
+
