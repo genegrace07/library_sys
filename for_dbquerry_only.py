@@ -11,7 +11,7 @@ db = mysql.connector.connect(
     password = os.getenv('dbpassword'),
     database = os.getenv('dbname')
 )
-
+#test connect
 dbcursor = db.cursor()
 dbcursor.execute('select * from books')
 result_querry = dbcursor.fetchall()
