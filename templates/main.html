@@ -30,9 +30,9 @@
     {% for v in view_books %}
     <tr><td align="center">{{ v['book_id'] }}</td>
         <td>{{ v['title'] }}</td>
-        <td>{{ v['author'] }}</td>
-        <td>{{ v['status'] }}</td>
-        <td>{{ v['title'] }}</td>
+        <td align="center">{{ v['author'] }}</td>
+        <td  align="center" style="background-color:{{ '#00CC99' if v['status'] == 'available' else '#734F96' }}{{endif}};">{{ v['status'] }}</td>
+        <td align="center">{{ 'action' }}</td>
     </tr>
     {% endfor %}
     </tbody>
