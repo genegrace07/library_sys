@@ -39,3 +39,11 @@ class Operations(Users):
         result = cursor.fetchall()
         cursor.close()
         return result
+    def available(self):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select * from books where status = "available"'
+        cursor.execute(querry)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
