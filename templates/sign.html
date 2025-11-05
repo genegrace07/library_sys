@@ -9,12 +9,12 @@
 <br>
 <h2 xmlns="http://www.w3.org/1999/html"><center>SIGN UP</center></h2>
 <form action="{{ url_for('auth.signup') }}" method="POST" align="center">
-    <b>Username:</b> <input type="text" name="username" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus>
+    <b>Username:</b> <input type="text" name="username" placeholder="" style="width:150px;height:20px; border-radius:100px" autofocus required>
     <br>
     <br>
-    <b>Password:</b> <input type="password" name="password" placeholder="" style="width:150px;height:20px; border-radius:100px">
+    <b>Password:</b> <input type="password" name="password" placeholder="" style="width:150px;height:20px; border-radius:100px" required>
     <br>
-    <br><input type="submit" value="Submit" style="width:150px;height:30px; border-radius:100px" autofocus>
+    <br><input type="submit" value="Submit" style="width:150px;height:30px; border-radius:100px">
     <a href="/"><h3>Back</h3>
 </form>
 {% endblock %}

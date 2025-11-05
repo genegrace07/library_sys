@@ -8,9 +8,13 @@ def add():
         title = request.form.get('title')
         author = request.form.get('author')
         user_op = current_app.config['useroperate']
-        add_book = user_op.add_books(title,author)
-        flash(f'{title} successfully added')
-        return render_template('add.html')
+        if not title:
+            flash('Title cannot be empty','error')
+            return redirect(url_for('action.add'))
+        else:
+            add_book = user_op.add_books(title,author)
+            flash(f'{title} successfully added','success')
+            return render_template('add.html')
     else:
         return render_template('add.html')
 
