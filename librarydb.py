@@ -58,3 +58,13 @@ class Operate(Users):
         cursor.close()
         return result
 
+    def add_books(self,title,author):
+        db.ping(reconnect=True)
+        cursor = db.cursor()
+        querry = 'insert into books (title,author) values (%s,%s)'
+        result = cursor.execute(querry,(title,author,))
+        db.commit()
+        db.close()
+        cursor.close()
+        return result
+

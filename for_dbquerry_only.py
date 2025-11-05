@@ -13,7 +13,8 @@ db = mysql.connector.connect(
 )
 #test connect
 dbcursor = db.cursor()
-dbcursor.execute('select * from books')
+dbcursor.execute("describe books")
+# db.commit()
 result_querry = dbcursor.fetchall()
 print(result_querry)
 
