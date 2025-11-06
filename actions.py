@@ -18,4 +18,8 @@ def add():
     else:
         return render_template('add.html')
 
+@action.route('/delete')
+def delete():
+    return render_template('delete.html')
+
 
