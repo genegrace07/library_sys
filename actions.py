@@ -19,9 +19,12 @@ def add():
             return redirect(url_for('action.add'))
     else:
         return render_template('add.html')
-
-@action.route('/delete')
-def delete():
-    return render_template('delete.html')
+@action.route('/actionhandling/<int:book_id>',methods=['POST','GET'])
+def action_handling(book_id):
+        useractions = current_app.get['useraction']
+        if 'update' in request.form:
+            return render_template('update.html',book_id=book_id)
+        elif 'delete' in request.form:
+            return render_template('delet.html',book_id=book_id)
 
 
