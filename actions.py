@@ -15,16 +15,16 @@ def add():
             flash(f'{title} successfully added','success')
             return render_template('add.html')
         else:
-            flash('Title cannot be empty','error')
             return redirect(url_for('action.add'))
     else:
         return render_template('add.html')
 @action.route('/actionhandling/<int:book_id>',methods=['POST','GET'])
-def action_handling(book_id):
-        useractions = current_app.get['useraction']
-        if 'update' in request.form:
-            return render_template('update.html',book_id=book_id)
-        elif 'delete' in request.form:
-            return render_template('delet.html',book_id=book_id)
+def actionhandling(book_id):
+        useractions = current_app.config['useraction']
+        if request.method == 'POST':
+            if 'update' in request.form:
+                return render_template('update.html',book_id=book_id)
+            elif 'delete' in request.form:
+                return render_template('delete.html',book_id=book_id)
 
 
