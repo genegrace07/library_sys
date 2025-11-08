@@ -21,10 +21,20 @@ def add():
 @action.route('/actionhandling/<int:book_id>',methods=['POST','GET'])
 def actionhandling(book_id):
         useractions = current_app.config['useraction']
-        if request.method == 'POST':
-            if 'update' in request.form:
+        if request.method == 'GET':
+            if 'update' in request.args:
                 return render_template('update.html',book_id=book_id)
-            elif 'delete' in request.form:
-                return render_template('delete.html',book_id=book_id)
+            elif 'delete' in request.args:
+                return render_template('delete.html', book_id=book_id)
+
+        if request.method == 'POST':
+            if 'yes' in request.form:
+                request.form.get('yes')
+                book_id = useractions.delete(book_id)
+                return redirect(url_for('libsys',book_id=book_id))
+            else:
+                return render_template('main.html')
+
+
 
 
