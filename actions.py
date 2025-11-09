@@ -22,18 +22,38 @@ def add():
 def actionhandling(book_id):
         useractions = current_app.config['useraction']
         if request.method == 'GET':
-            if 'update' in request.args:
-                return render_template('update.html',book_id=book_id)
-            elif 'delete' in request.args:
+            if 'delete' in request.args:
                 return render_template('delete.html', book_id=book_id)
 
         if request.method == 'POST':
             if 'yes' in request.form:
                 request.form.get('yes')
                 book_id = useractions.delete(book_id)
+                flash('Deleted successfully','success')
                 return redirect(url_for('libsys',book_id=book_id))
             else:
-                return render_template('main.html')
+                return redirect(url_for('libsys',book_id=book_id))
+@action.route('/update/<int:book_id>',methods=['POST','GET'])
+def update(book_id):
+    if request.method == 'GET':
+        if 'update' in request.args:
+            return render_template('update.html',book_id=book_id)
+
+    if request.method == 'POST':
+        if 'yes' in request.form:
+            #request.form.get('yes')
+            useraction = current_app.config['useraction']
+            book_available = useraction.available()
+            book_borrowed = useraction.borrowed()
+            if book_available:
+                useraction.update_to_borrowed(book_id)
+                return redirect(url_for('libsys',book_id=book_id))
+            elif book_borrowed:
+                useraction.update_to_available(book_id)
+                return redirect(url_for('libsys', book_id=book_id))
+        else:
+            return redirect(url_for('libsys', book_id=book_id))
+
 
 
 
