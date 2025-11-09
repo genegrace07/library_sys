@@ -99,4 +99,16 @@ class Actions(Operate):
     def book_available(self,book_id):
         db.ping(reconnect=True)
         cursor = db.cursor(dictionary=True,buffered=True)
-        querry = 'select * from books where b'
+        querry = 'select * from books where status = "available" and book_id = %s'
+        cursor.execute(querry,(book_id,))
+        result = cursor.fetchone()
+        cursor.close()
+        return result
+    def book_borrowed(self,book_id):
+        db.ping(reconnect=True)
+        cursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'select * from books where status = "borrowed" and book_id = %s'
+        cursor.execute(querry,(book_id,))
+        result = cursor.fetchone()
+        cursor.close()
+        return result

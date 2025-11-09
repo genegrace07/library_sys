@@ -43,13 +43,15 @@ def update(book_id):
         if 'yes' in request.form:
             #request.form.get('yes')
             useraction = current_app.config['useraction']
-            book_available = useraction.available()
-            book_borrowed = useraction.borrowed()
+            book_available = useraction.book_available(book_id)
+            book_borrowed = useraction.book_borrowed(book_id)
             if book_available:
                 useraction.update_to_borrowed(book_id)
+                flash('Successfully updated','success')
                 return redirect(url_for('libsys',book_id=book_id))
             elif book_borrowed:
                 useraction.update_to_available(book_id)
+                flash('Successfully updated', 'success')
                 return redirect(url_for('libsys', book_id=book_id))
         else:
             return redirect(url_for('libsys', book_id=book_id))
