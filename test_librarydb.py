@@ -1,22 +1,56 @@
 import pytest
 from librarydb import Users,Operate
 
-#TEST get_username with parameterized
-@pytest.mark.parametrize('username,expected',[('zoro',{'username':'zoro'})])
-def test_get_username(mocker,username,expected):
+#Test view with parametirized
+@pytest.mark.parametrize('dbresult',[{'title':'the book','author':'david'}])
+def test_view(mocker,dbresult):
   mock_db = mocker.patch('librarydb.db')
   mock_cursor = mock_db.cursor.return_value
 
-  user = Users()
-  mock_cursor.fetchone.return_value  = expected
-  result = user.get_username(username)
+  mock_cursor.fetchall.return_value = dbresult
+  operate = Operate()
+  result = operate.view()
 
   mock_db.ping.assert_called_once_with(reconnect=True)
   mock_db.cursor.assert_called_once_with(dictionary=True,buffered=True)
-  mock_cursor.execute.assert_called_once_with('select * from admins where username = %s',(username,))
+  mock_cursor.execute.assert_called_once_with('select * from books')
   mock_cursor.close.assert_called_once()
 
-  assert result == expected
+  assert result == dbresult
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #TEST get_username with parameterized
+# @pytest.mark.parametrize('username,expected',[('zoro',{'username':'zoro'})])
+# def test_get_username(mocker,username,expected):
+#   mock_db = mocker.patch('librarydb.db')
+#   mock_cursor = mock_db.cursor.return_value
+#
+#   user = Users()
+#   mock_cursor.fetchone.return_value  = expected
+#   result = user.get_username(username)
+#
+#   mock_db.ping.assert_called_once_with(reconnect=True)
+#   mock_db.cursor.assert_called_once_with(dictionary=True,buffered=True)
+#   mock_cursor.execute.assert_called_once_with('select * from admins where username = %s',(username,))
+#   mock_cursor.close.assert_called_once()
+#
+#   assert result == expected
 #
 # #TEST get_username
 # def test_get_username(mocker):
