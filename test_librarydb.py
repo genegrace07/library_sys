@@ -1,39 +1,48 @@
 import pytest
 from librarydb import Users,Operate
 
-#Test view with parametirized
-@pytest.mark.parametrize('dbresult',[{'title':'the book','author':'david'}])
-def test_view(mocker,dbresult):
-  mock_db = mocker.patch('librarydb.db')
-  mock_cursor = mock_db.cursor.return_value
+#Test available with  fixture
+@pytest.fixture
+def mock_db(mocker):
+    mockdb = mocker.patch('librarydb.db')
+    mockcursor = mockdb.cursor.return_value
+    return mockdb,mockcursor
+def test_available(mock_db):
+    db,cursor = mock_db
+    operate = Operate()
+    cursor.fetchall.return_value = [{'title':'naruto','availability':'no'},{'title':'onepiece','availability':'yes'}]
+    result = operate.available()
 
-  mock_cursor.fetchall.return_value = dbresult
-  operate = Operate()
-  result = operate.view()
+    db.ping.assert_called_once_with(reconnect=True)
+    db.cursor.assert_called_once_with(dictionary=True,buffered=True)
+    cursor.execute.assert_called_once_with('select * from books where status = "available"')
+    # cursor.fetchall.assert_called_once()
+    cursor.close.assert_called_once()
 
-  mock_db.ping.assert_called_once_with(reconnect=True)
-  mock_db.cursor.assert_called_once_with(dictionary=True,buffered=True)
-  mock_cursor.execute.assert_called_once_with('select * from books')
-  mock_cursor.close.assert_called_once()
-
-  assert result == dbresult
-
-
-
-
-
+    assert result == [{'title':'naruto','availability':'yes'},{'title':'onepiece','availability':'yes'}]
 
 
 
 
 
 
-
-
-
-
-
-
+#
+# #Test view with parametirized
+# @pytest.mark.parametrize('dbresult',[{'title':'the book2','author':'david2'}])
+# def test_view(mocker,dbresult):
+#   mock_db = mocker.patch('librarydb.db')
+#   mock_cursor = mock_db.cursor.return_value
+#
+#   mock_cursor.fetchall.return_value = {'title':'the book1','author':'david1'}
+#   operate = Operate()
+#   result = operate.view()
+#
+#   mock_db.ping.assert_called_once_with(reconnect=True)
+#   mock_db.cursor.assert_called_once_with(dictionary=True,buffered=True)
+#   mock_cursor.execute.assert_called_once_with('select * from books')
+#   mock_cursor.close.assert_called_once()
+#
+#   assert result == {'title':'the book2','author':'david2'}
 
 # #TEST get_username with parameterized
 # @pytest.mark.parametrize('username,expected',[('zoro',{'username':'zoro'})])
