@@ -19,13 +19,7 @@ def test_available(mock_db):
     # cursor.fetchall.assert_called_once()
     cursor.close.assert_called_once()
 
-    assert result == [{'title':'naruto','availability':'yes'},{'title':'onepiece','availability':'yes'}]
-
-
-
-
-
-
+    assert result == [{'title':'naruto','availability':'no'},{'title':'onepiece','availability':'yes'}]
 #
 # #Test view with parametirized
 # @pytest.mark.parametrize('dbresult',[{'title':'the book2','author':'david2'}])
