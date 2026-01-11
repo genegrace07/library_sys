@@ -60,7 +60,7 @@ class Operate(Users):
 
     def add_books(self,title,author):
         db.ping(reconnect=True)
-        cursor = db.cursor()
+        cursor = db.cursor(dictionary=True,buffered=True)
         querry = 'insert into books (title,author) values (%s,%s)'
         result = cursor.execute(querry,(title,author,))
         db.commit()

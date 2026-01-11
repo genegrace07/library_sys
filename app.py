@@ -4,7 +4,7 @@ from actions import action
 from librarydb import Users,Operate,Actions
 
 app = Flask(__name__)
-app.secret_key = 'mysecretkeygit '
+app.secret_key = 'mysecretkey'
 app.config['userid'] = Users()
 app.config['useroperate'] = Operate()
 app.config['useraction'] = Actions()
